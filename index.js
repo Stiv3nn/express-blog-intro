@@ -5,4 +5,61 @@
 // Creiamo poi una rotta /bacheca che restituisca un oggetto json con la lista dei post.
 // // Configuriamo gli asset statici sull’applicazione in modo che si possano visualizzare le immagini associate ad ogni post.
 
-console.log("Server del mio blog!!!");
+//console.log("Server del mio blog!!!");
+
+const express = require ('express') // IMPORTO EXPRESS
+const app = express() // INIZIALIZZARE EPRESS INVOCANDOLO COME UNA FUNZIONE E SALVANDOLO IN UNA VARIABILE
+const port = 3000
+
+// Definiamo l'uso di una cartella per i file statici
+app.use(express.static('Public'));
+
+app.get('/', (req, res) => { // DEFINIAMO LA PRIMA ROTTA
+    res.send("Server del mio blog!!!")
+})
+
+
+app.get('/menu', (req, res) => { // DEFINIAMO LA PRIMA ROTTA
+
+    // Creiamo un array dove inserire una lista di almeno 5 post, per ognuno indicare titolo, contenuto, immagine e tags (tags è un array di stringhe)
+    const post = [
+        {
+            titolo: "Ciambellone",
+            contenuto: "",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\ciambellone.jpeg",
+            tags: ["ricetta", "dolci", "cucina"]
+        },
+        {
+            titolo: "Cracker",
+            contenuto: "",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\cracker_barbabietola.jpeg",
+            tags: ["ricetta", "salato", "merenda"]
+        },
+        {
+            titolo: "Pane fritto",
+            contenuto: "",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\pane_fritto_dolce.jpeg",
+            tags: ["dolce", "salato", "merenda"]
+        },
+        {
+            titolo: "Pasta",
+            contenuto: "",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\pasta_barbabietola.jpeg",
+            tags: ["pranzo", "salato", "cena"]
+        },
+        {
+            titolo: "Torta",
+            contenuto: "",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\torta_paesana.jpeg",
+            tags: ["desert", "torte", "dolce"]
+        }
+    ];
+
+    // Ritorniamo l'array dei post in formato json per questo endpoint dell'API
+    res.json(post);
+})
+
+
+app.listen(port, () => { // AVVIAMO IL SERVER, METTENDOLO IN ASCOLTO SULL PORTA INDICATA
+    console.log(`Example app listening on port ${port}`);
+})
