@@ -12,45 +12,50 @@ const app = express() // INIZIALIZZARE EPRESS INVOCANDOLO COME UNA FUNZIONE E SA
 const port = 3000
 
 // Definiamo l'uso di una cartella per i file statici
-app.use(express.static('Public'));
+app.use(express.static('public'));
 
 app.get('/', (req, res) => { // DEFINIAMO LA PRIMA ROTTA
     res.send("Server del mio blog!!!")
 })
 
+// Definiamo la rotta dettaglio del prodotto per testare un parametreo dinamico
+app.get('/products/:id', function (req, res){
+    console.log(`Hai richiesto il prodotto con l'id: ${req.params.id}`);
+    
+})
 
-app.get('/menu', (req, res) => { // DEFINIAMO LA PRIMA ROTTA
+app.get('/post', (req, res) => { // DEFINIAMO LA PRIMA ROTTA
 
     // Creiamo un array dove inserire una lista di almeno 5 post, per ognuno indicare titolo, contenuto, immagine e tags (tags è un array di stringhe)
     const post = [
         {
             titolo: "Ciambellone",
-            contenuto: "",
-            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\ciambellone.jpeg",
+            contenuto: "food",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\public\images\ciambellone.jpeg",
             tags: ["ricetta", "dolci", "cucina"]
         },
         {
             titolo: "Cracker",
-            contenuto: "",
-            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\cracker_barbabietola.jpeg",
+            contenuto: "food",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\public\images\cracker_barbabietola.jpeg",
             tags: ["ricetta", "salato", "merenda"]
         },
         {
             titolo: "Pane fritto",
-            contenuto: "",
-            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\pane_fritto_dolce.jpeg",
+            contenuto: "food",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\public\images\pane_fritto_dolce.jpeg",
             tags: ["dolce", "salato", "merenda"]
         },
         {
             titolo: "Pasta",
-            contenuto: "",
-            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\pasta_barbabietola.jpeg",
+            contenuto: "food",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\public\images\pasta_barbabietola.jpeg",
             tags: ["pranzo", "salato", "cena"]
         },
         {
             titolo: "Torta",
-            contenuto: "",
-            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\images\torta_paesana.jpeg",
+            contenuto: "food",
+            image: "C:\Users\stive\Desktop\Classe #139\express-blog-intro\public\images\torta_paesana.jpeg",
             tags: ["desert", "torte", "dolce"]
         }
     ];
